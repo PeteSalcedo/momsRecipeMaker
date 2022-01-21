@@ -75,10 +75,22 @@ var BasicInfoForm = function () {
   );
 };
 var PersonaForm = function () {
+
+    // State to store uploaded file
+    const [file, setFile] = React.useState("");
+
+    // Handles file upload event and updates state
+    function handleUpload(event) {
+      setFile(event.target.files[0]);
+  
+      // Add code here to upload file to server
+  
+      // ...
+    }
     return (
       <div>
         <form action="/persona" method="POST">
-          <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"/>          
+        <input type="file" onChange={handleUpload} />     
           <br />
           <label for="file" style="cursor: pointer;">Upload Image</label>
           <br />
