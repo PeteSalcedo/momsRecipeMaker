@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 4000
 const path = require('path')
 
 app.use('/', express.static(path.join(__dirname, '../client')))
 app.use(express.json());
-app.use(express.urlencoded())
+app.use(express.urlencoded());
 
 var validKeys = [
     "9xxq9I8ke8LyIVKE",

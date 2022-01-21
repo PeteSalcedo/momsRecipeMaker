@@ -6,24 +6,24 @@ class App extends React.Component {
     };
     this.pageFlip = this.pageFlip.bind(this);
     this.pageRender = this.pageRender.bind(this);
-    this.loadFile = this.loadFile.bind(this);
+    // this.loadFile = this.loadFile.bind(this);
   }
-  
-    loadFile (event) {
-        var image = document.getElementById("output");
-        image.src = URL.createObjectURL(event.target.files[0]);
-      };
-    
+
+  // loadFile (event) {
+  //     var image = document.getElementById("output");
+  //     image.src = URL.createObjectURL(event.target.files[0]);
+  //   };
+
   pageFlip() {
-      //we need to build a get request here and when it responds we need to update the page
-      //given that the key form is using default browser action
+    //we need to build a get request here and when it responds we need to update the page
+    //given that the key form is using default browser action
 
     console.log(this.props);
   }
   pageRender() {
     switch (this.state.page) {
       case 0:
-        return <KeyForm pageFlip={this.pageFlip}/>;
+        return <KeyForm pageFlip={this.pageFlip} />;
       case 1:
         return <BasicInfoForm />;
       case 2:
@@ -75,44 +75,39 @@ var BasicInfoForm = function () {
   );
 };
 var PersonaForm = function () {
+  // State to store uploaded file
+  const [file, setFile] = React.useState("");
 
-    // State to store uploaded file
-    const [file, setFile] = React.useState("");
+  // Handles file upload event and updates state
+  function handleUpload(event) {
+    setFile(event.target.files[0]);
 
-    // Handles file upload event and updates state
-    function handleUpload(event) {
-      setFile(event.target.files[0]);
-  
-      // Add code here to upload file to server
-  
-      // ...
-    }
-    return (
-      <div>
-        <form action="/persona" method="POST">
-        <input type="file" onChange={handleUpload} />     
-          <br />
-          <label for="file" style="cursor: pointer;">Upload Image</label>
-          <br />
-          <img id="output" width="200" />
-          <br />
-          <label for="color">Color:</label>
-          <br />
-          <input type="text" id="color" name="color" />
-          <br />
-          <label for="animal">Animal:</label>
-          <br />
-          <input type="text" id="animal" name="animal" />
-          <br />
-          <label for="sex">Sex:</label>
-          <br />
-          <input type="text" id="sex" name="sex" />
-          <br />
-          <br />
-          <input type="submit" value="Entra" />
-        </form>
-      </div>
-    );
-  };
+    // Add code here to upload file to server
+
+    // ...
+  }
+  return (
+    <div>
+      <form action="/persona" method="POST">
+        <input type="file" onChange={handleUpload} />
+        <br />
+        <label for="color">Color:</label>
+        <br />
+        <input type="text" id="color" name="color" />
+        <br />
+        <label for="animal">Animal:</label>
+        <br />
+        <input type="text" id="animal" name="animal" />
+        <br />
+        <label for="sex">Sex:</label>
+        <br />
+        <input type="text" id="sex" name="sex" />
+        <br />
+        <br />
+        <input type="submit" value="Entra" />
+      </form>
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("app"));
