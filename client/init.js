@@ -2,18 +2,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 2,
+      page: 0,
     };
     this.pageFlip = this.pageFlip.bind(this);
     this.pageRender = this.pageRender.bind(this);
-    // this.loadFile = this.loadFile.bind(this);
   }
-
-  // loadFile (event) {
-  //     var image = document.getElementById("output");
-  //     image.src = URL.createObjectURL(event.target.files[0]);
-  //   };
-
   pageFlip() {
     //we need to build a get request here and when it responds we need to update the page
     //given that the key form is using default browser action
